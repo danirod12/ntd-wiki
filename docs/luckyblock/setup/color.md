@@ -6,7 +6,7 @@ This wiki page was imported from **old GitHub wiki**. *Work in progress on makin
 
 ## Custom texture
 
-You can set custom texture for my luckyblocks. By default luckyblocks have build-in textures that can be found here
+You can set custom texture for my luckyblocks. By default, luckyblocks have build-in textures that can be found here
 
 Texture format is unique id from skull url (Example: `8534b17d2d3b5a64c57f5f080dd777945761d9f71d82e8f599f242976e4d0c05`).  
 You can find it at the bottom of the heads page at [minecraft-heads.com](https://minecraft-heads.com)
