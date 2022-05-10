@@ -88,9 +88,13 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} NTD STUDIOS. All rights reserved.`,
       },
+      "colorMode": {
+        "defaultMode": "dark",
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ['java', 'yaml']
       },
     }),
 };
