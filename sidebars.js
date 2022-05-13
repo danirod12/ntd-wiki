@@ -24,6 +24,7 @@ const sidebars = {
       label: 'LuckyBlock NTD',
       items: [
         'luckyblock/overview',
+        'luckyblock/commands',
         'luckyblock/languages',
         {
           type: 'category',
