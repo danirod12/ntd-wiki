@@ -30,7 +30,7 @@ Do not use colors for system name
   ```
   lore:
   - "&7Place me :D"
-  - "&7A am a luckyblock &6^_^"
+  - "&7I am a luckyblock &6^_^"
   ```
 
 ## Shop & options
