@@ -25,6 +25,7 @@ const sidebars = {
       items: [
         'luckyblock/overview',
         'luckyblock/commands',
+        'luckyblock/crafts',
         'luckyblock/languages',
         {
           type: 'category',
