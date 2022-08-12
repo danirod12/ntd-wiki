@@ -27,6 +27,7 @@ const sidebars = {
         'luckyblock/commands',
         'luckyblock/crafts',
         'luckyblock/languages',
+        'luckyblock/permissions',
         {
           type: 'category',
           label: 'Setup',
