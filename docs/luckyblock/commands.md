@@ -23,7 +23,8 @@ GUI manager, mineable config, bedwars configs and so on)
 ⚠ Permission required for command: `luckyblock.command.convert`
 JSON format. This action is required for edit GUI features
 :::tip
-You should convert all configs to JSON format in premium version. It is really important
+You should convert all configs to JSON format in premium version. It is really important  
+Since `2.7.5-99` version all configs except default ones are generated in JSON format in premium version
 :::
 * `/ntdluckyblock destroy <chunk/radius>` - Command to destroy broken LuckyBlocks (Floating head without
 glass). You should provide at least one argument that should be a radius-integer or word `chunk` for chunk
