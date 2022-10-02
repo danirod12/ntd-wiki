@@ -12,9 +12,12 @@ For adding a new language, please contact me via my [discord server](https://dis
 
 ### Community languages:
 - **zn_cn** - Simplified Chinese language (Author: SnowCutieOwO)
+- **pt_br** - Brazilian Portuguese language (Author: PedroJs)
 - **de** - German language (Author: Luke)
 - **pl** - Polish language (Author: Torwik)
 - **tr** - Turkish language (Author: Testim)
+- **es** - Spanish language (Author: Santos)
+- **fr** - French language (Author: RuKinPGMSaneVR)
 
 :::danger
 I cannot check **community languages**. You should check languages before using it.
