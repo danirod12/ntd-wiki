@@ -29,6 +29,17 @@ You should convert all configs to JSON format in premium version. It is really i
 glass). You should provide at least one argument that should be a radius-integer or word `chunk` for chunk
 clear. You can also add `-all` argument if you want to destroy all LuckyBlocks (Not only broken, but all)   
 ⚠ Permission required for command: `luckyblock.command.destroy`
+* `/ntdluckyblock generate <type> <factory> <min> <max>` - Regenerate config with new LuckyEntries. First argument -
+LuckyBlock type (For instance, `yellow`), second argument - factory version (Recommended `latest`), third and last
+argument - min and max entry drops.
+⚠ Permission required for command: `luckyblock.command.generate`
+:::caution
+This command drops all setups inside LuckyBlock configuration. Prepare a backup
+:::
+:::tip
+Example: `/ntdluckyblock generate yellow latest 100 150` will drop yellow configuration and insert
+from 100 to 150 entry drops
+:::
 * `/ntdluckyblock list` - Command to get all LuckyBlocks statuses (Enabled or disabled, entries amount,
 recipes amount *(Premium version contains a feature to all custom recipes for your LuckyBlocks)*)  
 ⚠ Permission required for command: `luckyblock.command.list`
