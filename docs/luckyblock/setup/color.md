@@ -1,24 +1,40 @@
 # LuckyBlock setup
 
-:::warning
-This wiki page was imported from **old GitHub wiki**. *Work in progress on making a new one*
-:::
-
 ## Custom texture
 
-You can set custom texture for my luckyblocks. By default, luckyblocks have build-in textures that can be found here
-
+You can set custom texture for LuckyBlocks. By default, LuckyBlocks have build-in textures that can be found there  
 Texture format is unique id from skull url (Example: `8534b17d2d3b5a64c57f5f080dd777945761d9f71d82e8f599f242976e4d0c05`).  
 You can find it at the bottom of the heads page at [minecraft-heads.com](https://minecraft-heads.com)
 
 :::caution
-Incorrect texture will convert luckyblock to steve
+Incorrect texture will break LuckyBlock texture to steve  
+Sometimes minecraft client lags, please check texture from more than one pc if you suppose that custom texture  
+is not working. It should work!
 :::
+:::warning
+GeySer works bad with textures. We are not supporting GeySer. Texture may be a steve even with default setup
+:::
+
+Moreover, with premium version you can change item for LuckyBlock inside glass! (Config option `custom-head`)  
+You should pass json format item to it (You can get this format using command `/lb ii -tag -write`,
+[commands info](./../commands))
+Example:
+```yml
+custom-head:
+  enabled: true
+  item: '{"type":"GOLD_BLOCK","amount":1,"tag":""}'
+```
+![gold block](https://imgur.com/IniIpGs.png)
+
+You can create custom texture using resource pack.
+It could be with animation: [video mirror](https://i.imgur.com/CVRcwu6.mp4)
+<video src="https://i.imgur.com/CVRcwu6.mp4" autoplay muted controls loop></video>
 
 ## Custom name and lore
 
-- You can set custom name (Item name) for my luckyblocks. By default it is `&<color_code><COLOR_NAME> LuckyBlock`.   
-Enter new name to `name` field like `name: "&4My cool luckyblock name"`. You can use same names to all luckyblocks. You can use colors with `&` symbol
+- You can set custom name (Item name) for LuckyBlocks. By default, it is `&<color_code><COLOR_NAME> LuckyBlock`.   
+Enter new name to `name` field like `name: "&4My cool LuckyBlock name"`. You can use same names for all LuckyBlocks.
+You can use colors with `&` symbol (Or hex using `&#rrggbb`)
 
 - You can also change custom system name (Will be used as a color for give commands and more).  
 Enter new name to `custom_name` field like `custom_name: "YELLOW"`
@@ -29,26 +45,34 @@ Do not use colors for system name
 - You can change lore. Enter new lore to `lore` field:
   ```
   lore:
-  - "&7Place me :D"
-  - "&7I am a luckyblock &6^_^"
+  - "&7Oh boy, place me :D"
+  - "&7I am a LuckyBlock &6^_^"
   ```
 
 ## Shop & options
 
-You can buy luckyblocks using command `/ntdluckyblock gui get`. Setup:  
-- You can toggle luckyblocks from shop by setting `shop: false`.  
-- You can toggle luckyblock cost by setting `price: <amount>` (Example: `price: 250`)  
-- You can disable economy per luckyblock by `eco: false`. LuckyBlock will be available for free  
+You can sell LuckyBlocks using command `/ntdluckyblock gui get`. Setup:  
+- You can toggle LuckyBlock from being sold by setting `shop: false`.  
+- You can toggle LuckyBlock's cost by setting `price: <amount>` (Example: `price: 250`)  
+- You can toggle LuckyBlock's economy by setting `eco: false`. LuckyBlock will be available for free in the shop   
 
 :::info
-If shop is not working check permissions `luckyblock.gui.get` or `luckyblock.gui.get.color` based on your config setup
+If shop is not working check permissions `luckyblock.gui.get` or `luckyblock.gui.get.<color>` based on your config setup
 :::
 
 ## Drop formats
 
+:::caution
+If you came here and owning premium version, close this page and use `/ntdluckyblock gui edit`!  
+This system is not a joke, you SHOULD use in-game editor only for setup in premium version  
+Yes, you can still add drops using legacy style and convert in after, but it is kinda stupid. Only exception
+I can make. Now premium in-game editor do not support schematics :( and you could add it using legacy format only,
+but nothing else. **Please use in-game editor.**
+:::
+
 - **Legacy (free version) style:**  
 You can add as many drops as you want.  
-All LuckyDrops splited with unique names.  
+All LuckyDrops split with unique names.  
 If you want to add new LuckyDrop you must add a new field `drop.number` and describe LuckyDrop using string list. Example:
   ```$xslt
   drop:
@@ -60,13 +84,21 @@ If you want to add new LuckyDrop you must add a new field `drop.number` and desc
     ...
   ```
 :::tip
-  - You can find available descriptions at LuckyDrop types section. But before reading it you must familiarize with my arguments designations.  
-  - I will use `[]` for required arguments and `<>` for not required arguments. I will use `<<>>` for unlimited/a large number of not required arguments.  
-  - LuckyDrop format will represent `TYPE : [argument] : <argument> : <<arguments>>` All arguments will be splited with `:` (With two spaces)
+  - You can find available descriptions at LuckyDrop types section. But before reading it you must familiarize with 
+ my arguments designations.  
+  - I will use `[]` for required arguments and `<>` for not required arguments. I will use `<<>>` for unlimited/a
+ large number of not required arguments.  
+  - LuckyDrop format will represent `TYPE : [argument] : <argument> : <<arguments>>` All arguments will be split
+ with ` `**`:`**` ` (`:` with two spaces each side)
 :::
 
 - **JSON (Premium version) style**  
-Well, you can add luckydrops using legacy format and convert to JSON style using command `/ntdluckyblock convert`  
+:::warning
+If you are from free version, skip JSON style, otherwise..
+Please stop.. Use in-game editor.... If you are SO stubborn, you can use `/ntdluckyblock iteminfo`
+(Read more at [commands page](./../commands)) to get JSON format for item holding in hand
+:::
+You can add LuckyDrops using legacy format and convert to JSON style using command `/ntdluckyblock convert`  
 JSON format style example:
   ```$xslt
   drop:
@@ -93,39 +125,68 @@ JSON format style example:
 ## LuckyDrop types
 
 :::caution
-The main logic part you should understand
+Read careful all styles. Legacy format is made for free version and limited in functionalities.  
+You cannot add NBT items and there may be some small issues, but you can anyway use free version,
+it was developed with love (Originally I have not even planned premium version and legacy format was main)
+:::
+
+Topics below presents key type and arguments map, read style again:
+:::tip
+- You can find available descriptions at LuckyDrop types section. But before reading it you must familiarize with
+  my arguments designations.
+- I will use `[]` for required arguments and `<>` for not required arguments. I will use `<<>>` for unlimited/a
+  large number of not required arguments.
+- LuckyDrop format will represent `TYPE : [argument] : <argument> : <<arguments>>` All arguments will be split
+  with ` `**`:`**` ` (`:` with two spaces each side)
 :::
 
 ### CommandDrop (`COMMAND`)
+Dispatch a command by a player
 - Arguments map: `[command]`
 - Description example: `"COMMAND : say Hello %player%!"`
-- Additional Information: You can use `%player%` placeholder that will return player name if luckyblock broken by player
+- Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
+### ConsoleDrop (`OPPED`)
+Dispatch a command by an opped player
+- Arguments map: `[command]`
+- Description example: `"OPPED : gamemode creative"`
+- Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
 ### ConsoleDrop (`CONSOLE`)
+Dispatch a command by console
 - Arguments map: `[command]`
 - Description example: `"CONSOLE : give %player% diamond"`
-- Additional Information: You can use `%player%` placeholder that will return player name if luckyblock broken by player
+- Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
 ### EntityDrop (`ENTITY`)
+Summon an entity
 - Arguments map: `[entity type] <amount>`
 - Description example: `"ENTITY : GHAST"`, `"ENTITY : GHAST : 4"`
 - Additional Information: You can find entity types [here](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html)
 ### ItemDrop (`ITEM`)
+Drop an item
 - Arguments map: `[material] [amount] [data] <name> <<[enchantment] [level]>>`
 - Description example: `"ITEM : IRON_SWORD : 1 : 0"`, `"ITEM : IRON_SWORD : 1 : 0 : Iron sword : DAMAGE_ALL : 2"`
-- Additional Information: For 1.8 - 1.12 servers data will change multiblock types (Wool color (Example `WOOL : 1 : 14` - one red wool), stone type) and also tools corruption. For 1.13+ servers you must provide data "0" for all blocks and corruption amount for tools. 
+- Additional Information: For 1.8 - 1.12 servers data will change multiblock types 
+(Wool color (Example `WOOL : 1 : 14` - one red wool), stone type) and also tools corruption.
+For 1.13+ servers you must provide data "0" for all blocks and corruption amount for tools. 
+### CustomItemDrop (`CUSTOM_ITEM`)
+Drop a custom item from LuckyBlock plugin (Or any other plugin hooked into mine)
+- Arguments map: `[item id] <amount>`
+- Description example: `CUSTOM_ITEM : magic_wool : 5`
+- Additional Information: You can get custom items list using `/ntdluckyblock customitemslist`
 ### LuckyItemDrop (`LUCKY_BLOCK_ITEM`)
+Drop a LuckyBlock as an item
 - Arguments map: `[type] <amount>`
 - Description example: `"LUCKY_BLOCK_ITEM : BLUE : 2"`, `"LUCKY_BLOCK_ITEM : RANDOM"`, `"LUCKY_BLOCK_ITEM : BLACK"`
+- Additional Information: Check if your LuckyBlock is enabled (How we can drop a red LuckyBlock if it was disabled?)
 ### MessageDrop (`MESSAGE`)
+Send a message to player
 - Arguments map: `[message]`
 - Description example: `"MESSAGE : Hello %player%!"`
-- Additional Information: You can use `%player%` placeholder that will return player name if luckyblock broken by player
+- Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
 ### SchematicDrop (`SCHEMATIC`)
 - Arguments map: `[file] [type]`
 - Description example: `"SCHEMATIC : bedrock_problem : BLOCK"`, `"SCHEMATIC : cage_lava : PLAYER"`
 - Additional Information: Schematic have two types `BLOCK` and `PLAYER`. This is responsible for where the schematic will be inserted.
-### SpecialDrop (`SPECIAL`) _Note for API: no class SpecialDrop will be presented. Use TypeSpecial classes_
-- Arguments map: `[special type] arguments...?`
-- Special types and description for each:
+
 ### PigSpecial (`PIG`)
 - Special arguments map: `<amount>`
 - Description example:  `"SPECIAL : PIG"`, `SPECIAL : PIG : 4`
@@ -144,6 +205,18 @@ The main logic part you should understand
 ### TntExplosionSpecial (`TNT_EXPLOSION`)
 - Special arguments map: `<amount>`
 - Description example:  `"SPECIAL : TNT_EXPLOSION : 4"`, `"SPECIAL : TNT_EXPLOSION"`
+### TntColumnSpecial (`TNT_COLUMN`)
+- Special arguments map: `<amount>`
+- Description example:  `"SPECIAL : TNT_COLUMN : 4"`, `"SPECIAL : TNT_COLUMN"`
 ### WitchAttackSpecial (`WITCH_ATTACK`)
 - Special arguments map: `<bats amount>`
 - Description example:  `"SPECIAL : WITCH_ATTACK : 4"`, `"SPECIAL : WITCH_ATTACK"`
+
+### Placeholders for commands and messages:
+COMMAND, OPPED, CONSOLE, MESSAGE drops placeholders:
+* `%world%` - World string name (Example: `world_the_end`)
+* `%player%` - Player name (Example: `Danirod_Gaming`)
+COMMAND, OPPED, CONSOLE drops placeholders:
+* `%block_location%` - Location string (Example: `-121.0 63.0 99122.0`)
+* `%player_location%` - Location string (Example: `-125.2787 64.1332 99123.8674`)
+* ~~`%location%`~~ - *Deprecated*. (Same as `%player_location%)
