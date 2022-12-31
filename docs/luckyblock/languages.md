@@ -18,6 +18,7 @@ For adding a new language, please contact me via my [discord server](https://dis
 - **tr** - Turkish language (Author: Testim)
 - **es** - Spanish language (Author: Santos)
 - **fr** - French language (Author: RuKinPGMSaneVR)
+- **it** - Italian language (Author: LotusIsHere)
 
 :::danger
 I cannot check **community languages**. You should check languages before using it.
