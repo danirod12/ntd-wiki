@@ -4,7 +4,8 @@ For breaking LuckyBlocks or getting it from mineable addon, or performing some c
 you need a permissions manager plugin like [PermissionsEx](https://dev.bukkit.org/projects/permissionsex)
 or [LuckPerms](https://luckperms.net/download) (Recommended)
 :::tip
-You can disable break permission requirement using [config](./setup/config)
+You can disable break permission requirement using
+[config](https://danirod12.github.io/ntd-wiki/docs/luckyblock/setup/config)
 :::
 
 You can read about granting permissions nodes on plugin's wikis. (`/op <name>` grants all permissions)
@@ -32,5 +33,5 @@ You can still disable this ability using `worlds.yml` option (`place-admins: fal
 :::
 
 ### Commands Permissions
-Now you can check permissions in [commands list](./commands), but most often it is `luckyblock.command.<command>`  
-(example: `luckyblock.command.reload` for `/ntdluckyblock reload`)
+Now you can check permissions in [commands list](https://danirod12.github.io/ntd-wiki/docs/luckyblock/commands),
+but most often it is `luckyblock.command.<command>` (example: `luckyblock.command.reload` for `/ntdluckyblock reload`)
