@@ -22,6 +22,8 @@ You can read about granting permissions nodes on plugin's wikis. (`/op <name>` g
 or `luckyblock.break.*` for all
 * `luckyblock.craft.<color>` - Craft LuckyBlocks permission (example: `luckyblock.craft.red`)
 or `luckyblock.craft.*` for all
+* `luckyblock.dye.<color>` - Dye LuckyBlocks permission (example: `luckyblock.craft.red`)
+or `luckyblock.dye.*` for all
 * `luckyblock.mineable.<material>` - Permission for getting LuckyBlocks by digging blocks
 (example: `luckyblock.mineable.stone`) or `luckyblock.mineable.*` for all  
 :::info
