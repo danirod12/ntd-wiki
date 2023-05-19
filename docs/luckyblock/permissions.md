@@ -24,6 +24,9 @@ or `luckyblock.break.*` for all
 or `luckyblock.craft.*` for all
 * `luckyblock.dye.<color>` - Dye LuckyBlocks permission (example: `luckyblock.craft.red`)
 or `luckyblock.dye.*` for all
+* `luckyblock.command.<command>` - Access to some command (The command should be primary)
+* ⚠️ `luckyblock.command.gui` and `luckyblock.command.gui.get` both required for `/lb gui get`.
+There you will need `luckyblock.get.<color>` or `luckyblock.get.*` to purchase a LuckyBlock
 * `luckyblock.mineable.<material>` - Permission for getting LuckyBlocks by digging blocks
 (example: `luckyblock.mineable.stone`) or `luckyblock.mineable.*` for all  
 :::info
