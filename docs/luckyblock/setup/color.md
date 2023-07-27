@@ -183,9 +183,13 @@ Send a message to player
 - Description example: `"MESSAGE : Hello %player%!"`
 - Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
 ### SchematicDrop (`SCHEMATIC`)
-- Arguments map: `[file] [type]`
-- Description example: `"SCHEMATIC : bedrock_problem : BLOCK"`, `"SCHEMATIC : cage_lava : PLAYER"`
+- Arguments map: `[file] [type] <air>`
+- Description example: `"SCHEMATIC : bedrock_problem : BLOCK"`, `"SCHEMATIC : big_house : PLAYER : true"`
 - Additional Information: Schematic have two types `BLOCK` and `PLAYER`. This is responsible for where the schematic will be inserted.
+- The last argument represents if schematic air will be pasted (When `true` it is same as WE command `//paste -a`)
+:::tip
+The name (Like `bedrock_problem`, `big_house`) is a name of schematic without format type in directory
+`./plugins/ntdLuckyBlock/schematics/`. For instance, `bedrock_problem.schem`, `big_house.schematic`
 
 ### PigSpecial (`PIG`)
 - Special arguments map: `<amount>`
