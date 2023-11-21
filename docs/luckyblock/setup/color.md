@@ -217,10 +217,16 @@ The name (Like `bedrock_problem`, `big_house`) is a name of schematic without fo
 - Description example:  `"SPECIAL : WITCH_ATTACK : 4"`, `"SPECIAL : WITCH_ATTACK"`
 
 ### Placeholders for commands and messages:
-COMMAND, OPPED, CONSOLE, MESSAGE drops placeholders:
+#### COMMAND, OPPED, CONSOLE, MESSAGE drops placeholders:
 * `%world%` - World string name (Example: `world_the_end`)
-* `%player%` - Player name (Example: `Danirod_Gaming`)
-COMMAND, OPPED, CONSOLE drops placeholders:
-* `%block_location%` - Location string (Example: `-121.0 63.0 99122.0`)
+* `%player%` - Player name (Example: `Danirod_Gaming`)  
+#### COMMAND, OPPED, CONSOLE drops placeholders:  
+Base location format is `%<player/block>_location[_above_<value>][_int]%`, more details:
+* `%block_location%` - Location string (Example: `-121.5 63.5 99122.5`)
+* `%block_location_int%` - Location rounded (Example: `-121 63 99122`) You possibly need this one ⚠
 * `%player_location%` - Location string (Example: `-125.2787 64.1332 99123.8674`)
-* ~~`%location%`~~ - *Deprecated*. (Same as `%player_location%)
+* `%player_location_int%` - Location string (Example: `-125 64 99123`) You possibly need this one ⚠
+* `%<player/block>_location_above_<value>[_int]` - Location with offset of "value" blocks high  
+(Example: origin location is `0 0.5 2.65`, with `%<player/block>_location_above_10%` you will get `0 10.5 2.65`,
+with `%<player/block>_location_above_-1_int%` you will get `0 -1 2`)
+* ~~`%location%`~~ - *Deprecated*. (Same as `%player_location%`)
