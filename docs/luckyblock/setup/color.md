@@ -221,12 +221,31 @@ The name (Like `bedrock_problem`, `big_house`) is a name of schematic without fo
 * `%world%` - World string name (Example: `world_the_end`)
 * `%player%` - Player name (Example: `Danirod_Gaming`)  
 #### COMMAND, OPPED, CONSOLE drops placeholders:  
-Base location format is `%<player/block>_location[_above_<value>][_int]%`, more details:
-* `%block_location%` - Location string (Example: `-121.5 63.5 99122.5`)
-* `%block_location_int%` - Location rounded (Example: `-121 63 99122`) You possibly need this one ⚠
-* `%player_location%` - Location string (Example: `-125.2787 64.1332 99123.8674`)
-* `%player_location_int%` - Location string (Example: `-125 64 99123`) You possibly need this one ⚠
+Location format is `%<player/block>_<location/x/y/z>[_above_<value>][_move_(value,value,value)][_int]%`  
+Now we will talk a bit more, with examples:
+
+##### First argument `<block/player>` stands for LuckyBlock and Player that breaks LuckyBlock:
+* `%block_location%` - LuckyBlock location string (Example: `-121.5 63.5 99122.5`)
+* `%player_location%` - Player location string (Example: `-125.27 64.13 99123.86`)
+##### Last param `_int` defines that location would be rounded:
+* `%block_location_int%` - Location rounded (Example: `-121 63 99122`) **You possibly need this one ⚠**
+* `%player_location_int%` - Location string (Example: `-125 64 99123`) **You possibly need this one ⚠**
+##### Param `move_(value,value,value)` moves location to (value,value,value) vector:
+* `%player_location_move_(1,2,1)` - Location moved to offset of (x: 1, y: 2, z: 1), not rounded
+* `%player_location_move_(1,2,1)_int` - Location moved to offset of (x: 1, y: 2, z: 1), rounded
+* `%block_x_move_(1,0,0)_int%` - We take block location, move it 1 block for x and returns rounded x
+##### Param `above_<value>` is something like `move_(0,value,0)` param, moving only for Y:
 * `%<player/block>_location_above_<value>[_int]` - Location with offset of "value" blocks high  
 (Example: origin location is `0 0.5 2.65`, with `%<player/block>_location_above_10%` you will get `0 10.5 2.65`,
 with `%<player/block>_location_above_-1_int%` you will get `0 -1 2`)
+
+:::tip
+As for `move_(value,value,value)`, `above_value` supports negative numbers,
+so `%player_location_above_-1_int%` is a location 1 block below the player
+:::
+##### Deprecated, but still supported
 * ~~`%location%`~~ - *Deprecated*. (Same as `%player_location%`)
+
+##### Combining is your power:
+`CONSOLE : fill %player_x_move_(-1,0,0)_int% %block_y_int% %player_z_move_(0,0,-1)_int% %player_x_move_(1,0,0)_int% %block_y_int% %player_z_move_(0,0,1)_int% tnt`
+This simple console command fills 3x3 blocks with tnt at Player X and Z, but on LuckyBlocks Y
