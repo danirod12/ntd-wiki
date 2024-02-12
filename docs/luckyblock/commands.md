@@ -26,9 +26,15 @@ JSON format. This action is required for edit GUI features
 You should convert all configs to JSON format in premium version. It is really important  
 Since `2.7.5-99` version all configs except default ones are generated in JSON format in premium version
 :::
-* `/ntdluckyblock destroy <chunk/radius>` - Command to destroy broken LuckyBlocks (Floating head without
-glass). You should provide at least one argument that should be a radius-integer or word `chunk` for chunk
-clear. You can also add `-all` argument if you want to destroy all LuckyBlocks (Not only broken, but all)   
+* `/ntdluckyblock destroy <chunk/radius/(<xyz> [xyz] [world])> [-all] [-silent]` - Command to destroy broken 
+LuckyBlocks (Floating head without glass) or just LuckyBlocks. You should provide at least one argument. You
+have 4 options to run command with:
+  * Radius. Destroys in radius from player (Example: `lb destroy 10`)
+  * World `chunk`. Destroys in player's chunk (Example: `lb destroy chunk`)
+  * Location `x y z`. Destroys at block (Example: `lb destroy 100 0 100` or `lb destroy 100 0 100 world_the_end`)
+  * Area `x y z x y z`. Destroys ar area (Example: `lb destroy 0 0 0 20 20 20 world`)
+  * Can add `-all` to destroy all LuckyBlocks (Not only corrupted). (Example: `lb destroy 0 0 0 -all`)
+  * Can add `-silent` to not produce an output. (Example: `lb destroy 0 0 0 2 3 4 world -all -silent`)  
 ⚠ Permission required for command: `luckyblock.command.destroy`
 * `/ntdluckyblock generate <type> <factory> <min> <max>` - Regenerate config with new LuckyEntries. First argument -
 LuckyBlock type (For instance, `yellow`), second argument - factory version (Recommended `latest`), third and last
