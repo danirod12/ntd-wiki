@@ -61,10 +61,13 @@ could be a player name or `all` word or `world` word. Note that `world` argument
 (Not from console). As with get command, LuckyBlock should be loaded.  
 ⚠ Permission required for command: `luckyblock.command.give` and `luckyblock.command.give.<type/random>`
 (If per color permission feature is enabled [in config](./setup/config))
-* `/ntdluckyblock place [world] <x> <y> <z> <type> [-silent]` - Command to place LuckyBlock. World argument is optional
-if this command is executing from player. Otherwise, world argument is required. You can use offsets for
-x, y and z if command was used by a player (For instance, `/lb place ~ ~-1 ~ yellow` place YELLOW LuckyBlock
-under the player). You can pass latest argument as `-silent` or `-s` and you will get no output (on console)   
+* `/ntdluckyblock place [world/p:PlayerName] <x> <y> <z> <type> [-silent]` - Command to place LuckyBlock.
+World argument is optional if this command is executing from player. Otherwise, world argument is required.
+You can use offsets for x, y and z if command was used by a player or a player target is involved
+(For instance, `/lb place ~ ~-1 ~ yellow` place YELLOW LuckyBlock under the player executor
+or `/lb place p:md_5 ~ ~2 ~ black` will place a BLACK one above the `md_5`. Another example is to place
+a LuckyBlock at world_the_end at 100 50 40: `/lb place world_the_end 100 50 40 random -s`).
+You can pass latest argument as `-silent` or `-s` and you will get no output (on console)   
 ⚠ Permission required for command: `luckyblock.command.place` and `luckyblock.command.place.<type>`
 (Or with mask `luckyblock.command.place.*`)
 
