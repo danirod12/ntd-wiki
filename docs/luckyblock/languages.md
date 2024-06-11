@@ -11,7 +11,7 @@ For adding a new language, please contact me via my [discord server](https://dis
 - **ru** - Russian language (Author: danirod12)
 
 ### Community languages:
-- **zn_cn** - Simplified Chinese language (Author: SnowCutieOwO)
+- **zh_cn** - Simplified Chinese language (Author: SnowCutieOwO)
 - **pt_br** - Brazilian Portuguese language (Author: PedroJs)
 - **de** - German language (Author: Luke)
 - **pl** - Polish language (Author: Torwik)
