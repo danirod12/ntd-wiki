@@ -49,6 +49,11 @@ const config = {
             to: 'docs/luckyblock/overview'
           },
           {
+            label: 'Support with donation',
+            position: 'left',
+            to: 'docs/donate'
+          },
+          {
             href: 'https://www.spigotmc.org/members/danirod12.822980/',
             label: 'SpigotMC',
             position: 'right',
