@@ -11,6 +11,13 @@ In free version there is only limited amount of crafts, but in premium version y
 ⚠ Permission required for craft: `luckyblock.dye.<type>` (For instance, `luckyblock.dye.yellow`)
 
 ### Custom crafts (Premium version)
+This file should be created inside `./plugins/ntdLuckyBlock/crafts/<color>/`.  
+For instance, if we want a craft for YELLOW one `./plugins/ntdLuckyBlock/crafts/yellow/example.yml`
+:::warning
+You should enable custom crafts inside your LuckyBlock configuration
+`./plugins/ntdLuckyBlock/luckyblocks/<color>.yml`  
+For above example set `craft.custom: true` inside `./plugins/ntdLuckyBlock/luckyblocks/yellow.yml`
+:::
 ```yml title="example.yml"
 permissions:
   # If set to true LuckyBlock NTD will check if player have permission for craft
@@ -49,7 +56,3 @@ matrix:
     item3: "MATERIAL : DIAMOND"
 ```
 I think that this `example.yml` clearly describes what you should do.  
-:::warning
-You should enable custom crafts inside your LuckyBlock configuration
-`../plugins/ntdLuckyBlock/luckyblocks/<color>.yml`
-:::
