@@ -19,6 +19,12 @@ For adding a new language, please contact me via my [discord server](https://dis
 - **es** - Spanish language (Author: Santos)
 - **fr** - French language (Author: RuKinPGMSaneVR)
 - **it** - Italian language (Author: LotusIsHere)
+- **ar** - Arabic language (Author: MrMDX)
+- **ua** - Ukrainian language (Author: \_AKRGames_)
+:::info
+**Armenian** and **Ukrainian** languages are released with premium-2.9.15 and planned for free-2.8.30+  
+At time of writing this, they are not available in free version
+:::
 
 :::danger
 I cannot check **community languages**. You should check languages before using it.
