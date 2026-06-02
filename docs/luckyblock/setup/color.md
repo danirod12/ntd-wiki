@@ -114,6 +114,30 @@ Default value is `1`.
 - `permission` - permission required for this entry. Use `"NONE"` to disable permission check. Optional, default is `"NONE"`
 - `drops` - entry drops. Can be list-like or id-like
 
+### Chance and levels
+
+`chance` is a weight, not a direct percent value. Real chance is calculated from all available weights in the same roll.
+
+You can use a number directly or use a level name. Levels are configured in `config.yml` and formally work as a reference to a weight value.
+
+Example:
+
+```yml
+A:
+  chance: 30
+B:
+  chance: level1
+
+levels:
+  level1: 20
+```
+
+In this example `B` has weight `20`, because `level1` points to `20`.
+
+```text
+B = 20 / (20 + 30) = 40%
+```
+
 ### List-like drops
 
 Use list-like drops when all drops should have the same chance and no per-drop permissions.
@@ -210,9 +234,10 @@ Send a message to player
 - Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
 ### SchematicDrop (`SCHEMATIC`)
 - Arguments map: `[file] [type] <air>`
-- Description example: `"SCHEMATIC : bedrock_problem : BLOCK"`, `"SCHEMATIC : big_house : PLAYER : true"`
-- Additional Information: Schematic have two types `BLOCK` and `PLAYER`. This is responsible for where the schematic will be inserted.
+- Description example: `"SCHEMATIC : bedrock_problem : BLOCK_RELATIVE"`, `"SCHEMATIC : big_house : PLAYER_RELATIVE : true"`
+- Additional Information: Schematic have two types `BLOCK_RELATIVE` and `PLAYER_RELATIVE`. This is responsible for where the schematic will be inserted.
 - The last argument represents if schematic air will be pasted (When `true` it is same as WE command `//paste -a`)
+
 :::tip
 The name (Like `bedrock_problem`, `big_house`) is a name of schematic without format type in directory
 `./plugins/ntdLuckyBlock/schematics/`. For instance, `bedrock_problem.schem`, `big_house.schematic`
@@ -224,25 +249,25 @@ You can use these schematics in `SCHEMATIC` drops:
 
 | Schematic name | File name | Description |
 | --- | --- | --- |
-| `1_8n1` | `1_8n1.schematic` ||
-| `1_8n2` | `1_8n2.schematic` ||
-| `1_8n3` | `1_8n3.schematic` ||
-| `1_8n4` | `1_8n4.schematic` ||
-| `1_8n5` | `1_8n5.schematic` ||
-| `1_13n1` | `1_13n1.schem` ||
-| `1_13n2_b` | `1_13n2_b.schem` ||
-| `1_13n3` | `1_13n3.schem` ||
-| `1_13n4` | `1_13n4.schem` ||
-| `1_13n5` | `1_13n5.schem` ||
-| `1_13n6` | `1_13n6.schem` ||
+| `JungleGazebo` | `JungleGazebo.schematic` | Jungle-themed gazebo |
+| `HellishChunk` | `HellishChunk.schematic` | Nether-style chunk structure |
+| `WoolFloor` | `WoolFloor.schematic` | Wool floor platform |
+| `DiamondTrap` | `DiamondTrap.schematic` | Diamond trap structure |
+| `DesertBoom` | `DesertBoom.schematic` | Desert explosion trap |
+| `TerracotaPlatform` | `TerracotaPlatform.schem` | Terracotta platform |
+| `OldCache` | `OldCache.schem` | Old hidden cache |
+| `SmallRetreat` | `SmallRetreat.schem` | Small retreat structure |
+| `PrismarineGazebo` | `PrismarineGazebo.schem` | Prismarine gazebo |
+| `EndArch` | `EndArch.schem` | End-themed arch |
+| `LavaDive` | `LavaDive.schem` | Lava dive trap |
 | `AncientPagoda` | `AncientPagoda.schem` | Ancient-style pagoda structure |
 | `ApocalypsysHouse` | `ApocalypsysHouse.schem` | Ruined apocalyptic house |
-| `bedrock_problem` | `bedrock_problem.schematic` | Bedrock trap structure |
+| `BedrockProblem` | `BedrockProblem.schematic` | Bedrock trap structure |
 | `BlossomTree` | `BlossomTree.schem` | Decorative blossom tree |
-| `cage_lava` | `cage_lava.schem` | Lava cage trap |
+| `CageLava` | `CageLava.schem` | Lava cage trap |
 | `FlameShrine` | `FlameShrine.schematic` | Fire-themed shrine |
 | `LavaGuardian` | `LavaGuardian.schematic` | Lava guardian structure |
-| `small_temple` | `small_temple.schem` | Small temple structure |
+| `SmallTemple` | `SmallTemple.schem` | Small temple structure |
 | `WatchTower` | `WatchTower.schematic` | Watchtower structure |
 
 Use the value from **Schematic name** as the first argument:
