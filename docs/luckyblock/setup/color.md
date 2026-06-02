@@ -234,13 +234,13 @@ Send a message to player
 - Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
 ### SchematicDrop (`SCHEMATIC`)
 - Arguments map: `[file] [type] <air>`
-- Description example: `"SCHEMATIC : bedrock_problem : BLOCK_RELATIVE"`, `"SCHEMATIC : big_house : PLAYER_RELATIVE : true"`
+- Description example: `"SCHEMATIC : BedrockProblem : BLOCK_RELATIVE"`, `"SCHEMATIC : BlossomTree : PLAYER_RELATIVE : true"`
 - Additional Information: Schematic have two types `BLOCK_RELATIVE` and `PLAYER_RELATIVE`. This is responsible for where the schematic will be inserted.
 - The last argument represents if schematic air will be pasted (When `true` it is same as WE command `//paste -a`)
 
 :::tip
-The name (Like `bedrock_problem`, `big_house`) is a name of schematic without format type in directory
-`./plugins/ntdLuckyBlock/schematics/`. For instance, `bedrock_problem.schem`, `big_house.schematic`
+The name (Like `BedrockProblem`, `BlossomTree`) is a name of schematic without format type in directory
+`./plugins/ntdLuckyBlock/schematics/`. For instance, `BedrockProblem.schematic`, `BlossomTree.schem`
 :::
 
 #### Available schematics
@@ -273,15 +273,15 @@ You can use these schematics in `SCHEMATIC` drops:
 Use the value from **Schematic name** as the first argument:
 
 ```yml
-"SCHEMATIC : bedrock_problem : BLOCK"
-"SCHEMATIC : big_house : PLAYER : true"
+"SCHEMATIC : BedrockProblem : BLOCK"
+"SCHEMATIC : BlossomTree : PLAYER_RELATIVE : true"
 ```
 
 :::tip
 If your schematic file is named `arena.schem`, use only `arena` in the drop format:
 
 ```yml
-"SCHEMATIC : arena : BLOCK"
+"SCHEMATIC : arena : BLOCK_RELATIVE"
 ```
 :::
 
