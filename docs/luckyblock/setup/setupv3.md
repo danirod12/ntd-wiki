@@ -1,4 +1,10 @@
-# LuckyBlock setup
+# LuckyBlock setup v3
+
+:::info Looking for the v2 setup guide?
+Use the legacy setup guide if your server is running LuckyBlock v2.
+
+<a className="button button--primary" href="./setupv2">Open LuckyBlock setup v2</a>
+:::
 
 ## Custom texture
 
@@ -70,57 +76,107 @@ I can make. Now premium in-game editor do not support schematics :( and you coul
 but nothing else. **Please use in-game editor.**
 :::
 
-- **Legacy (free version) style:**  
-You can add as many drops as you want.  
-All LuckyDrops split with unique names.  
-If you want to add new LuckyDrop you must add a new field `drop.number` and describe LuckyDrop using string list. Example:
-  ```$xslt
-  drop:
-    '0':
-    - description
-    - description...
-    '1':
-    - description
-    ...
-  ```
-:::tip
-  - You can find available descriptions at LuckyDrop types section. But before reading it you must familiarize with 
- my arguments designations.  
-  - I will use `[]` for required arguments and `<>` for not required arguments. I will use `<<>>` for unlimited/a
- large number of not required arguments.  
-  - LuckyDrop format will represent `TYPE : [argument] : <argument> : <<arguments>>` All arguments will be split
- with ` `**`:`**` ` (`:` with two spaces each side)
-:::
+You can add as many entries as you want. Each entry can contain one or more drops.
 
-- **JSON (Premium version) style**  
-:::warning
-If you are from free version, skip JSON style, otherwise..
-Please stop.. Use in-game editor.... If you are SO stubborn, you can use `/ntdluckyblock iteminfo`
-(Read more at [commands page](./../commands)) to get JSON format for item holding in hand
+```yml
+entries-mode: "ALL"
+entries:
+  '0':
+    chance: "AUTO"
+    mode: "ALL"
+    permission: "NONE"
+    drops:
+      - "MESSAGE : Hello %player%!"
+      - "ITEM : DIAMOND : 1 : 0"
+  '1':
+    chance: 10
+    mode: "1-2"
+    permission: "luckyblock.entry.example"
+    drops:
+      '0':
+        chance: "AUTO"
+        permission: "NONE"
+        node: "ENTITY : ZOMBIE : 3"
+      '1':
+        chance: 5
+        permission: "luckyblock.drop.diamond"
+        node: "ITEM : DIAMOND : 3 : 0"
+```
+
+### Entries mode
+
+`entries-mode` controls how many entries will be rolled when LuckyBlock is broken.
+
+- `"ALL"` - execute all available entries
+- `number` - execute exact amount of entries, for example `1` or `3`
+- `number-number` - execute random amount in range, for example `1-3`
+
+Default value is `1`.
+
+### Entry options
+
+- `chance` - entry chance. Values: `"AUTO"`, `LEVEL`, or weight number. Optional, default is `"AUTO"`
+- `mode` - how many drops inside this entry will be rolled. Values: `"ALL"`, `number`, or `number-number`. Optional, default is `"ALL"`
+- `permission` - permission required for this entry. Use `"NONE"` to disable permission check. Optional, default is `"NONE"`
+- `drops` - entry drops. Can be list-like or id-like
+
+### Chance and levels
+
+`chance` is a weight, not a direct percent value. Real chance is calculated from all available weights in the same roll.
+
+You can use a number directly or use a level name. Levels are configured in `config.yml` and formally work as a reference to a weight value.
+
+Example:
+
+```yml
+A:
+  chance: 30
+B:
+  chance: level1
+
+levels:
+  level1: 20
+```
+
+In this example `B` has weight `20`, because `level1` points to `20`.
+
+```text
+B = 20 / (20 + 30) = 40%
+```
+
+### List-like drops
+
+Use list-like drops when all drops should have the same chance and no per-drop permissions.
+
+```yml
+drops:
+  - "MESSAGE : Hello %player%!"
+  - "ITEM : DIAMOND : 1 : 0"
+  - "SPECIAL : PIG"
+```
+
+### Id-like drops
+
+Use id-like drops when each drop needs its own chance or permission.
+
+```yml
+drops:
+  '0':
+    chance: "AUTO"
+    permission: "NONE"
+    node: "MESSAGE : Hello %player%!"
+  '1':
+    chance: 5
+    permission: "luckyblock.drop.diamond"
+    node: "ITEM : DIAMOND : 3 : 0"
+```
+
+:::tip
+- You can find available drop descriptions at LuckyDrop types section.
+- I will use `[]` for required arguments and `<>` for optional arguments.
+- I will use `<<>>` for unlimited or large number of optional arguments.
+- LuckyDrop format is `TYPE : [argument] : <argument> : <<arguments>>`. All arguments are split with ` `**`:`**` ` (`:` with two spaces each side).
 :::
-You can add LuckyDrops using legacy format and convert to JSON style using command `/ntdluckyblock convert`  
-JSON format style example:
-  ```$xslt
-  drop:
-    '0':
-      chance: CHANCE
-      items:
-        '0':
-          class: 'Clazz'
-          json: '{Json class instance}'
-        '1':
-          class: 'Clazz'
-          json: '{Json class instance}'
-        ...
-    '1':
-      chance: CHANCE
-      items:
-        '0':
-          class: 'Clazz'
-          json: '{Json class instance}'
-        ...
-    ...
-  ```
 
 ## LuckyDrop types
 
@@ -184,12 +240,56 @@ Send a message to player
 - Additional Information: You can use placeholders in string-based drops, read more at the bottom on page
 ### SchematicDrop (`SCHEMATIC`)
 - Arguments map: `[file] [type] <air>`
-- Description example: `"SCHEMATIC : bedrock_problem : BLOCK"`, `"SCHEMATIC : big_house : PLAYER : true"`
-- Additional Information: Schematic have two types `BLOCK` and `PLAYER`. This is responsible for where the schematic will be inserted.
+- Description example: `"SCHEMATIC : BedrockProblem : BLOCK_RELATIVE"`, `"SCHEMATIC : BlossomTree : PLAYER_RELATIVE : true"`
+- Additional Information: Schematic have two types `BLOCK_RELATIVE` and `PLAYER_RELATIVE`. This is responsible for where the schematic will be inserted.
 - The last argument represents if schematic air will be pasted (When `true` it is same as WE command `//paste -a`)
+
 :::tip
-The name (Like `bedrock_problem`, `big_house`) is a name of schematic without format type in directory
-`./plugins/ntdLuckyBlock/schematics/`. For instance, `bedrock_problem.schem`, `big_house.schematic`
+The name (Like `BedrockProblem`, `BlossomTree`) is a name of schematic without format type in directory
+`./plugins/ntdLuckyBlock/schematics/`. For instance, `BedrockProblem.schematic`, `BlossomTree.schem`
+:::
+
+#### Available schematics
+
+You can use these schematics in `SCHEMATIC` drops:
+
+| Schematic name | File name | Description |
+| --- | --- | --- |
+| `JungleGazebo` | `JungleGazebo.schematic` | Jungle-themed gazebo |
+| `HellishChunk` | `HellishChunk.schematic` | Nether-style chunk structure |
+| `WoolFloor` | `WoolFloor.schematic` | Wool floor platform |
+| `DiamondTrap` | `DiamondTrap.schematic` | Diamond trap structure |
+| `DesertBoom` | `DesertBoom.schematic` | Desert explosion trap |
+| `TerracotaPlatform` | `TerracotaPlatform.schem` | Terracotta platform |
+| `OldCache` | `OldCache.schem` | Old hidden cache |
+| `SmallRetreat` | `SmallRetreat.schem` | Small retreat structure |
+| `PrismarineGazebo` | `PrismarineGazebo.schem` | Prismarine gazebo |
+| `EndArch` | `EndArch.schem` | End-themed arch |
+| `LavaDive` | `LavaDive.schem` | Lava dive trap |
+| `AncientPagoda` | `AncientPagoda.schem` | Ancient-style pagoda structure |
+| `ApocalypsysHouse` | `ApocalypsysHouse.schem` | Ruined apocalyptic house |
+| `BedrockProblem` | `BedrockProblem.schematic` | Bedrock trap structure |
+| `BlossomTree` | `BlossomTree.schem` | Decorative blossom tree |
+| `CageLava` | `CageLava.schem` | Lava cage trap |
+| `FlameShrine` | `FlameShrine.schematic` | Fire-themed shrine |
+| `LavaGuardian` | `LavaGuardian.schematic` | Lava guardian structure |
+| `SmallTemple` | `SmallTemple.schem` | Small temple structure |
+| `WatchTower` | `WatchTower.schematic` | Watchtower structure |
+
+Use the value from **Schematic name** as the first argument:
+
+```yml
+"SCHEMATIC : BedrockProblem : BLOCK"
+"SCHEMATIC : BlossomTree : PLAYER_RELATIVE : true"
+```
+
+:::tip
+If your schematic file is named `arena.schem`, use only `arena` in the drop format:
+
+```yml
+"SCHEMATIC : arena : BLOCK_RELATIVE"
+```
+:::
 
 ### PigSpecial (`PIG`)
 - Special arguments map: `<amount>`
@@ -201,7 +301,7 @@ The name (Like `bedrock_problem`, `big_house`) is a name of schematic without fo
 - Special arguments map: `<amount>`
 - Description example:  `"SPECIAL : LIGHTNING : 4"`, `"SPECIAL : LIGHTNING"`
 ### DiamondColumnSpecial (`DIAMOND_COLUMN`)
-- Special arguments map> `<<block material>>`
+- Special arguments map: `<<block material>>`
 - Description example: `"SPECIAL : DIAMOND_COLUMN : RED_TERRACOTTA : YELLOW_TERRACOTTA : GREEN_TERRACOTTA : LIGHT_BLUE_TERRACOTTA : BLUE_TERRACOTTA : MAGENTA_TERRACOTTA"`
 ### ExperienceExplosionSpecial (`EXPERIENCE_EXPLOSION`)
 - Special arguments map: `<amount>`
@@ -215,6 +315,43 @@ The name (Like `bedrock_problem`, `big_house`) is a name of schematic without fo
 ### WitchAttackSpecial (`WITCH_ATTACK`)
 - Special arguments map: `<bats amount>`
 - Description example:  `"SPECIAL : WITCH_ATTACK : 4"`, `"SPECIAL : WITCH_ATTACK"`
+### JebSpecial (`JEB`)
+- Special arguments map: `<amount>`
+- Description example:  `"SPECIAL : JEB : 5"`, `"SPECIAL : JEB"`
+### CreepyMusicSpecial (`CREEPY_MUSIC`)
+- Special arguments map: `none`
+- Description example:  `"SPECIAL : CREEPY_MUSIC"`
+### ChickenRainSpecial (`CHICKEN_RAIN`)
+- Special arguments map: `<amount>`
+- Description example: `"SPECIAL : CHICKEN_RAIN : 20"`, `"SPECIAL : CHICKEN_RAIN"`
+### ParanoiaSpecial (`PARANOIA`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : PARANOIA"`
+### AnnoyingBabySpecial (`ANNOYING_BABY`)
+- Special arguments map: `<amount>`
+- Description example: `"SPECIAL : ANNOYING_BABY : 4"`,
+`"SPECIAL : ANNOYING_BABY"`
+### HotbarSwapSpecial (`HOTBAR_SWAP`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : HOTBAR_SWAP"`
+### BlackHoleSpecial (`BLACK_HOLE`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : BLACK_HOLE"`
+### GhostModeSpecial (`GHOST_MODE`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : GHOST_MODE"`
+### MoonGravitySpecial (`MOON_GRAVITY`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : MOON_GRAVITY"`
+### RandomTeleportSpecial (`RANDOM_TELEPORT`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : RANDOM_TELEPORT"`
+### SlipperyFingersSpecial (`SLIPPERY_FINGERS`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : SLIPPERY_FINGERS"`
+### TimeLoopSpecial (`TIME_LOOP`)
+- Special arguments map: `none`
+- Description example: `"SPECIAL : TIME_LOOP"`
 
 ### Placeholders for commands and messages:
 #### COMMAND, OPPED, CONSOLE, MESSAGE drops placeholders:
