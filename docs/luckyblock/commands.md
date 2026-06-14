@@ -36,16 +36,17 @@ have 4 options to run command with:
   * Can add `-all` to destroy all LuckyBlocks (Not only corrupted). (Example: `lb destroy 0 0 0 -all`)
   * Can add `-silent` to not produce an output. (Example: `lb destroy 0 0 0 2 3 4 world -all -silent`)  
 ⚠ Permission required for command: `luckyblock.command.destroy`
-* `/ntdluckyblock generate <type> <factory> <min> <max>` - Regenerate config with new LuckyEntries. First argument -
-LuckyBlock type (For instance, `yellow`), second argument - factory version (Recommended `latest`), third and last
-argument - min and max entry drops.
+* `/ntdluckyblock generate <type> <min> <max> <entries-count>` - Regenerate LuckyBlock config with new entries.
+The first argument is the LuckyBlock type (For instance, `yellow`). `min` and `max` define the minimum and maximum
+number of drops generated inside each entry. The last argument defines how many entries will be generated.
 ⚠ Permission required for command: `luckyblock.command.generate`
 :::caution
-This command drops all setups inside LuckyBlock configuration. Prepare a backup
+This command removes all existing entries from the LuckyBlock configuration and replaces them with generated ones.
+Prepare a backup before using it.
 :::
 :::tip
-Example: `/ntdluckyblock generate yellow latest 100 150` will drop yellow configuration and insert
-from 100 to 150 entry drops
+Example: `/ntdluckyblock generate yellow 1 3 100` will generate and save `100` entries for the yellow LuckyBlock.
+Each entry will contain from `1` to `3` generated drops.
 :::
 * `/ntdluckyblock list` - Command to get all LuckyBlocks statuses (Enabled or disabled, entries amount,
 recipes amount *(Premium version contains a feature to all custom recipes for your LuckyBlocks)*)  
