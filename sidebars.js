@@ -33,7 +33,8 @@ const sidebars = {
           label: 'Setup',
           items: [
             'luckyblock/setup/config',
-            'luckyblock/setup/color',
+            'luckyblock/setup/setupv2',
+            'luckyblock/setup/setupv3',
           ],
         },
       ],

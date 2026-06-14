@@ -1,4 +1,10 @@
-# LuckyBlock setup
+# LuckyBlock setup v3
+
+:::info Looking for the v2 setup guide?
+Use the legacy setup guide if your server is running LuckyBlock v2.
+
+<a className="button button--primary" href="./setupv2">Open LuckyBlock setup v2</a>
+:::
 
 ## Custom texture
 
